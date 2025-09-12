@@ -33,6 +33,8 @@ class Program
         { "бирюз", Color.Turquoise },
     };
 
+    static string[] colorEndings = { "ый", "ая", "ое", "ые", "ий", "яя", "ее", "ие", "ого", "ой", "ому", "ыми", "им", "ой" };
+
     static string GetText(string path)
     {
         string text = File.ReadAllText(path);
@@ -50,7 +52,7 @@ class Program
         {
             string word = wordMatch.Value.ToLower();
             var baseColor = colorsDict.FirstOrDefault(kvp => word.StartsWith(kvp.Key));
-            if (!baseColor.Equals(default(KeyValuePair<string, Color>)))
+            if (!baseColor.Equals(default(KeyValuePair<string, Color>)) && colorEndings.FirstOrDefault(e => word.EndsWith(e)) != null)
             {
                 colors.Add(baseColor.Value);
                 coloredWords.Add(word);
@@ -89,7 +91,7 @@ class Program
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        var text = GetText("Aeroport.txt");
+        var text = GetText("Podarok.txt");
         var arrayColor = CountColors(text);
         DrawColors(arrayColor.Item2);
     }
