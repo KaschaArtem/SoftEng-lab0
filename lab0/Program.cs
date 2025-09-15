@@ -34,7 +34,13 @@ class Program
     };
 
     static string[] colorEndings = { "ый", "ая", "ое", "ые", "ий", "яя", "ее", "ие", "ого", "ой", "ому", "ыми", "им", "ой" };
-
+    
+    static string[] FindAllTxt() {
+        string buildFolder = AppDomain.CurrentDomain.BaseDirectory;
+        string[] files = Directory.GetFiles(buildFolder, "*.txt", SearchOption.AllDirectories);
+        return files;
+    }
+    
     static string GetText(string path)
     {
         string text = File.ReadAllText(path);
