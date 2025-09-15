@@ -58,6 +58,7 @@ class Program
                 coloredWords.Add(word);
             }
         }
+
         return (coloredWords, colors);
     }
 
@@ -71,9 +72,7 @@ class Program
         using var file = new Bitmap(width, height);
         using var g = Graphics.FromImage(file);
 
-        int totalCells = gridSize * gridSize;
-
-        for (int i = 0; i < totalCells; i++)
+        for (int i = 0; i < colors.Count; i++)
         {
             Color color = colors[i % colors.Count];
 
