@@ -99,8 +99,22 @@ class Program
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-        var text = GetText("Podarok.txt");
-        var arrayColor = CountColors(text);
-        DrawColors(arrayColor.Item2);
+        var files = FindAllTxt();
+
+        if (files.Length == 0)
+        {
+            Console.WriteLine("Not found any txt files");
+        }
+        else
+        {
+            for (int i = 0; i < files.Length; i++)
+            {
+                Console.WriteLine((i + 1) + ". " + files[i]);
+            }
+
+            var text = GetText("Podarok.txt");
+            var arrayColor = CountColors(text);
+            DrawColors(arrayColor.Item2);
+        }
     }
 }
