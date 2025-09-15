@@ -37,7 +37,10 @@ class Program
     
     static string[] FindAllTxt() {
         string buildFolder = AppDomain.CurrentDomain.BaseDirectory;
-        string[] files = Directory.GetFiles(buildFolder, "*.txt", SearchOption.AllDirectories);
+        string[] files = Directory
+        .GetFiles(buildFolder, "*.txt", SearchOption.AllDirectories)
+        .Select(f => Path.GetFileName(f) ?? string.Empty)
+        .ToArray();
         return files;
     }
     
