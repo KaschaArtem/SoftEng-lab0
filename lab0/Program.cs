@@ -107,14 +107,32 @@ class Program
         }
         else
         {
+            Console.WriteLine("All found txt:");
             for (int i = 0; i < files.Length; i++)
             {
                 Console.WriteLine((i + 1) + ". " + files[i]);
             }
 
-            var text = GetText("Podarok.txt");
+            int fileNumber;
+            while (true)
+            {
+                Console.Write(">>> ");
+                string? input = Console.ReadLine();
+
+                if (int.TryParse(input, out fileNumber) &&
+                    fileNumber >= 1 && fileNumber <= files.Length)
+                {
+                    break;
+                }
+
+                Console.WriteLine("Wrong input!");
+            }
+
+            var text = GetText(files[fileNumber - 1]);
             var arrayColor = CountColors(text);
             DrawColors(arrayColor.Item2);
+
+            Console.WriteLine("Image created succesfully");
         }
     }
 }
